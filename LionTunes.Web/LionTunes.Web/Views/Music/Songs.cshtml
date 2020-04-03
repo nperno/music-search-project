@@ -1,0 +1,59 @@
+﻿@model Hqub.MusicBrainz.API.Entities.Collections.RecordingList
+
+@{
+    ViewData["Title"] = "Songs";
+}
+
+<h1>Songs</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Title
+
+            </th>
+            <th>
+                Singer
+
+            </th>
+            <th>
+                Duration
+            </th>
+            <th>
+                Album Art
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var i in Model.Items)
+        {
+            <tr>
+                <td>
+                    <a href="/music/song/@i.Id"> @Html.DisplayFor(modelItem => i.Title)</a>
+                </td>
+                <td>
+                    @foreach (var a in i.Credits)
+                    {<a href="/music/singer/@a.Artist.Id">@Html.DisplayFor(modelItem => a.Name)</a>}
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => i.Length)
+                </td>
+                <td>
+                    @foreach (var t in i.Releases)
+                    {
+                        var imageUrl = Hqub.MusicBrainz.API.Entities.CoverArtArchive.GetCoverArtUri(t.Id);
+                        <img height="100" width="100" src=@imageUrl />
+
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

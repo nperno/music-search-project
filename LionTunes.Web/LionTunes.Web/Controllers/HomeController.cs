@@ -23,9 +23,23 @@ namespace LionTunes.Web.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Search(SearchVM s)
         {
-            return View();
+
+            switch (s.SearchType)
+            {
+                case "Songs":
+                    //_logger.LogInformation(s.SearchText & s.SearchType)
+                    return
+                    RedirectToAction("Songs", "Music", new { name = s.SearchText });
+                
+                case "Singers":
+                   return RedirectToAction("Singers", "Music", new { name = s.SearchText });
+                  
+                default:
+                    _logger.LogError("Invalid Search Type");
+                    return NotFound();
+            }
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

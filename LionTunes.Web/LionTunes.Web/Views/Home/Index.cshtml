@@ -1,8 +1,17 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Search";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">LionTunes</h1>
+    <p>Lookup your favorite Songs and Artisits to learn more!.</p>
+
+    <form asp-controller="Home" asp-action="Search">
+        <p>
+            Search: <input type="text" name="SearchText">
+            <input type="radio" name="SearchType" value="Songs" title="Songs" checked /> Songs
+            <input type="radio" name="SearchType" value="Singers" title="Singers" /> Singers
+            <input type="submit" value="Search" />
+        </p>
+    </form>
 </div>
