@@ -7,4 +7,6 @@ This is a project for SWENG 861. This is a .net core 3 c# MVC web applicaiton th
 ### TODO
 1. Unit Tests
 2. Error Handeling
-3. General Cleanup
+3. Logging
+4. Refine controller logic
+5. General Cleanup
