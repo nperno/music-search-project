@@ -5,7 +5,7 @@
 <div class="text-center">
     <h1 class="display-4">LionTunes</h1>
     <p>Lookup your favorite Songs and Artisits to learn more!.</p>
-
+    <div class="alert-danger">@ViewData["error"]</div>
     <form asp-controller="Home" asp-action="Search">
         <p>
             Search: <input type="text" name="SearchText">
