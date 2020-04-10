@@ -34,8 +34,9 @@ namespace LionTunes.Web.Controllers
         {
             try
             {
+                
                 // use asyc method to find songs by name, limit to 10 results
-                var result = await Recording.SearchAsync(name, 10);
+                var result = await Recording.SearchAsync(name,10);
                 // did we get any results?
                 if (result.Count < 1)
                 {
@@ -66,8 +67,7 @@ namespace LionTunes.Web.Controllers
             try
             {
                 // use async method to find song by ID
-                var result = await Recording.GetAsync(id);
-
+                var result = await Recording.GetAsync(id, "artist-credits", "releases", "media", "discids", "isrcs", "genres", "tags", "work-rels", "url-rels");
                 // did we get any results?
                 if (result is null)
                 {
@@ -97,7 +97,7 @@ namespace LionTunes.Web.Controllers
             try
             {
                 // use asyc method to find artists by name, limit to 10 results
-                var result = await Artist.SearchAsync(name, 10);
+                var result = await Artist.SearchAsync(name,10);
                 // did we get any results?
                 if (result.Count < 1)
                 {
@@ -129,7 +129,7 @@ namespace LionTunes.Web.Controllers
             try
             {
                 // use async method to find singer by ID
-                var result = await Artist.GetAsync(id);
+                var result = await Artist.GetAsync(id, "artist-rels", "url-rels");
 
                 // did we get any results?
                 if (result is null)

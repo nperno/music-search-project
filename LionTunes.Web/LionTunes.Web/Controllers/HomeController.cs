@@ -50,7 +50,7 @@ namespace LionTunes.Web.Controllers
             }
 
             // setup what we define as valid string input, input validation
-            var validStringInput = new Regex("^[a-zA-Z0-9_?]*$");
+            var validStringInput = new Regex("^[a-zA-Z0-9_? ]*$");
 
             // validate the input 
             if (!validStringInput.IsMatch(s.SearchText))
