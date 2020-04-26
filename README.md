@@ -16,3 +16,10 @@ Use case: A user can look up details about songs and artists by providing basic 
 5. Index Controller is where the search starts
 6. Music Controller handels the routing and entry point for both Song(s) and Singer(s).
 7. Views have logic that handel dispaly, this could be refactored to make better use of view models to keep the views lighter in the future.
+
+### Run on your machine
+
+1. Install .net core 3.1
+2. navigate to the root foler of this project "music-search-project/LionTunes.Web/LionTunes.Web" in a command promot OR open using Visual Studio 2019. If you open with viual studio, just run the debugger to view. If you want to run via comand prompt follow the rest of the isntructions below. 
+3. If you open with a coman promot, type dotnet restore, then dotnet run
+4. Once the applicaiton is running open a web browser and navigate to : https://localhost:5001/
