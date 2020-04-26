@@ -15,7 +15,9 @@
             <th>
                 Type
             </th>
-            <th></th>
+            <th>
+                Tags
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -26,10 +28,19 @@
                     <a href="/music/singer/@item.Id">@Html.DisplayFor(modelItem => item.Name)</a>  
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Type)
+                    <span class="badge badge-success">@item.Type</span>
+
                 </td>
+
                 <td>
 
+                    @if (!(item.Tags == null))
+                    {
+                        @foreach (var t in item.Tags)
+                        {
+
+                            <span class="badge badge-primary">@t.Name</span>
+                        }}
                 </td>
             </tr>
         }

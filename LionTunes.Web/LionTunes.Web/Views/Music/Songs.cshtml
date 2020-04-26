@@ -19,11 +19,15 @@
                 Singer
 
             </th>
+            <th>Details</th>
             <th>
                 Duration
             </th>
             <th>
                 Album Art
+            </th>
+            <th>
+                Tags
             </th>
         </tr>
     </thead>
@@ -41,21 +45,32 @@
 
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => i.Length)
+                    @i.Disambiguation
+                </td>
+                <td>
+                    @{
+                        if (!(i.Length == null)) { 
+                        var length = TimeSpan.FromMilliseconds((int)i.Length).ToString(@"mm\:ss");;
+                        <span>@length </span>
+                        }
+                    }
                 </td>
                 <td>
                     @foreach (var t in i.Releases)
                     {
                         var imageUrl = Hqub.MusicBrainz.API.Entities.CoverArtArchive.GetCoverArtUri(t.Id);
-                        <img height="100" width="100" src=@imageUrl />
-
+                        <img height="100" width="100" src=@imageUrl onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';"  />
+                        
                     }
                 </td>
                 <td>
-                    @*@foreach (var t in i.Tags)
+                    @if (!(i.Tags == null))
                     {
-                        <p>t.Name</p>
-                    }*@
+                        @foreach (var t in i.Tags)
+                        {
+                            
+                            <span class="badge badge-primary">@t.Name</span>
+                        }}
                 </td>
             </tr>
         }

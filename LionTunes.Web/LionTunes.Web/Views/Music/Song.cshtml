@@ -10,57 +10,72 @@
     <h4>@Html.DisplayFor(model => model.Title)</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-
-        </dt>
-        <dd class = "col-sm-10">
-
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Id)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Id)
-        </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             Artist
         </dt>
         <dd class="col-sm-10">
-  
+
             @foreach (var a in Model.Credits)
             {
                 <a href="/music/singer/@a.Artist.Id">@a.Name</a>
             }
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
+            Details
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Disambiguation
+        </dd>
+        <dt class="col-sm-2">
             Length
         </dt>
-        <dd class = "col-sm-10">
-            
-            @{ @*var length = Model.Length;
-                Double dblen;
-                Double.TryParse(length.ToString(), out dblen);
-                var x = TimeSpan.FromMilliseconds(dblen).TotalMinutes;
-                var lengthInMIn = Math.Round(x, 2);*@
-                var length = TimeSpan.FromMilliseconds((int)Model.Length);
-                <span>@length <text>Minuets</text></span>
+        <dd class="col-sm-10">
 
-                    }
+            @{
+                if (!(Model.Length == null))
+                {
+                    var length = TimeSpan.FromMilliseconds((int)Model.Length).ToString(@"mm\:ss");
+                    <span>@length <text>Minuets</text></span>
+                }
+                else
+                {
+                    <span><text>Not Available</text></span>
+                }
+            }
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             Album Art
         </dt>
         <dd class="col-sm-10">
             @foreach (var t in Model.Releases)
             {
                 var imageUrl = Hqub.MusicBrainz.API.Entities.CoverArtArchive.GetCoverArtUri(t.Id);
-                <img height="100" width="100" src=@imageUrl />
-
+                <img height="100" width="100" src=@imageUrl onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';"  />
+                
             }
-        <p>@Model.Disambiguation</p>
+            <p>@Model.Disambiguation</p>
+        </dd>
+        <dt class="col-sm-2">
+            Tags
+        </dt>
+        <dd class="col-sm-10">
+
+            @if (!(@Model.Tags == null))
+            {
+                @foreach (var t in Model.Tags)
+                {
+                    <span class="badge badge-primary">@t.Name</span>
+                }
+            }
+            else
+            {
+                <span>None Available</span>
+            }
+
         </dd>
     </dl>
 </div>
 <div>
     <a href='javascript:history.go(-1)'>Return to search results</a>
 </div>
+
