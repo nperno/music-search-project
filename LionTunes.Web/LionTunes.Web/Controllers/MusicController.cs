@@ -65,7 +65,7 @@ namespace LionTunes.Web.Controllers
         {
             try
             {
-                // use async method to find song by ID
+                // use async method to find song by ID and related data (sub qurires)
                 var result = await Recording.GetAsync(id, "artist-credits", "releases", "media", 
                                 "discids", "isrcs", "genres", "tags", "work-rels", "url-rels");
                 // did we get any results?
@@ -128,8 +128,8 @@ namespace LionTunes.Web.Controllers
         {
             try
             {
-                // use async method to find singer by ID
-                var result = await Artist.GetAsync(id, "artist-rels", "url-rels");
+                // use async method to find singer by ID and bring back related data.
+                var result = await Artist.GetAsync(id, "artist-rels", "url-rels", "recordings", "releases", "works");
 
                 // did we get any results?
                 if (result is null)
@@ -148,7 +148,5 @@ namespace LionTunes.Web.Controllers
                 return View("~/Views/Home/index.cshtml");
             }
         }
-
-
     }
 }

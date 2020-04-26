@@ -4,7 +4,7 @@
     ViewData["Title"] = "Artist";
 }
 
-<h1>Singer</h1>
+<h1>Singer/Artist</h1>
 <div class="alert-danger">@ViewData["error"]</div>
 <div>
     <h4>@Model.Name</h4>
@@ -24,22 +24,10 @@
             @Html.DisplayFor(model => model.Name)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Gender)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Gender)
-        </dd>
-        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Country)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Country)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Disambiguation)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Disambiguation)
         </dd>
         <dt class="col-sm-2">
             Band Members
@@ -56,18 +44,13 @@
             }
         </dd>
         <dt class="col-sm-2">
-            Tags
+            Lifespan
         </dt>
         <dd class="col-sm-10">
-
-            @if (!(@Model.Tags == null))
-            {
-                @foreach (var t in Model.Tags)
-                {
-                    <span class="badge badge-primary">@t.Name</span>
-                }
-            }
-
+            @Model.LifeSpan.Begin <text> - </text> @if (@Model.LifeSpan.End == null)
+            {<text>present</text>}
+        else
+        {@Model.LifeSpan.End}
         </dd>
         <dt class="col-sm-2">
             Lyrics
@@ -86,6 +69,25 @@
                         }
                     </ul>
                 }
+            }
+
+        </dd>
+        <dt class="col-sm-2">
+           Songs
+        </dt>
+        <dd class="col-sm-10">
+            @{ 
+                if (!(Model.Works == null))
+                {
+
+                    <ul>
+                        @foreach (var w in Model.Works)
+                        {
+                            <li><a href="~/Music/Songs?name=@w.Title" target="_blank">@w.Title</a></li>
+                        }
+                    </ul>
+                }
+                
             }
 
         </dd>
