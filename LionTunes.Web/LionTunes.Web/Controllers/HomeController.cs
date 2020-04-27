@@ -44,7 +44,7 @@ namespace LionTunes.Web.Controllers
             if (s.SearchText is null)
             {
                 string msg = "No Search value provided.";
-                _logger.LogInformation(msg);
+                _logger.LogError(msg);
                 ViewData["error"] = msg;
                 return View("Index");
             }
@@ -56,7 +56,7 @@ namespace LionTunes.Web.Controllers
             if (!validStringInput.IsMatch(s.SearchText))
             {
                 string msg = "Invalid Search value provided.";
-                _logger.LogInformation(msg);
+                _logger.LogError(msg);
                 ViewData["error"] = msg;
                 return View("Index");
             }
@@ -65,11 +65,12 @@ namespace LionTunes.Web.Controllers
             switch (s.SearchType)
             {
                 case "Songs":
-                    //_logger.LogInformation(s.SearchText & s.SearchType)
+                    _logger.LogInformation($"Search for: {s.SearchText} for type {s.SearchType}");
                     return
                     RedirectToAction("Songs", "Music", new { name = s.SearchText });
 
                 case "Singers":
+                    _logger.LogInformation($"Search for: {s.SearchText} for type {s.SearchType}");
                     return RedirectToAction("Singers", "Music", new { name = s.SearchText });
 
                 default:

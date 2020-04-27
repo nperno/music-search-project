@@ -36,9 +36,11 @@
             @{
                 var members = Model.Relations.Where(r => r.TargetType == "artist" && r.Type.Contains("member"));
                 <ul>
-                    @foreach (var relation in members.Where(r => !(bool)r.Ended))
-                    {
-                        <li><a href="~/Music/Singers?name=@relation.Artist.Name">@relation.Artist.Name</a></li>
+                    @if (!(members == null)) { 
+                        @foreach (var relation in members.Where(r => !(bool)r.Ended))
+                        {
+                            <li><a href="~/Music/Singers?name=@relation.Artist.Name">@relation.Artist.Name</a></li>
+                        }
                     }
                 </ul>
             }

@@ -39,6 +39,7 @@ namespace LionTunes.Web.Controllers
                 // did we get any results?
                 if (result.Count < 1)
                 {
+                    _logger.LogError($"No Search Results for Songs Titled: {name}");
                     ViewData["error"] = "Could not find the song you were looking for. " +
                         "Go back to the home page and Try again.";
                 }
@@ -71,6 +72,7 @@ namespace LionTunes.Web.Controllers
                 // did we get any results?
                 if (result is null)
                 {
+                    _logger.LogError($"No Search Results for SongId: {id}");
                     ViewData["error"] = "Could not find the song you were looking for. " +
                         "Go back to the home page and Try again.";
                 }
@@ -101,6 +103,7 @@ namespace LionTunes.Web.Controllers
                 // did we get any results?
                 if (result.Count < 1)
                 {
+                    _logger.LogError($"No Results for Singer: {name}");
                     ViewData["error"] = "Could not find the singer you were looking for. " +
                         "Go back to the home page and Try again.";
                 }
@@ -134,6 +137,7 @@ namespace LionTunes.Web.Controllers
                 // did we get any results?
                 if (result is null)
                 {
+                    _logger.LogError($"No Search Results for SingerId: {id}");
                     ViewData["error"] = "Could not find the singer you were looking for. " +
                         "Go back to the home page and Try again.";
                 }

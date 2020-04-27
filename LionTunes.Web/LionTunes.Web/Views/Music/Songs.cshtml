@@ -13,11 +13,9 @@
         <tr>
             <th>
                 Title
-
             </th>
             <th>
                 Singer
-
             </th>
             <th>Details</th>
             <th>
@@ -40,9 +38,10 @@
                     <a href="/music/song/@i.Id"> @Html.DisplayFor(modelItem => i.Title)</a>
                 </td>
                 <td>
+                    @if (!(i.Credits == null)) { 
                     @foreach (var a in i.Credits)
                     {<a href="/music/singer/@a.Artist.Id">@Html.DisplayFor(modelItem => a.Name)</a>}
-
+                    }
                 </td>
                 <td>
                     @i.Disambiguation
@@ -56,12 +55,14 @@
                     }
                 </td>
                 <td>
+                    @if (!(i.Releases == null)) { 
                     @foreach (var t in i.Releases)
                     {
                         var imageUrl = Hqub.MusicBrainz.API.Entities.CoverArtArchive.GetCoverArtUri(t.Id);
                         <img height="100" width="100" src=@imageUrl onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';"  />
                         
                     }
+                        }
                 </td>
                 <td>
                     @if (!(i.Tags == null))
